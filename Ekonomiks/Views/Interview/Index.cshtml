@@ -1,0 +1,53 @@
+﻿@model AllViewModel
+<section class="sections">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-md-12 pattern">
+            <img src="~/img/pattern.png" width="100%" height="221px" alt="pattern" id="patternimage">
+            <p class="patterntext">MÜSAHİBƏ</p>
+            <p class="patterntextinterviews"><a asp-controller="home" asp-action="index">ANA SƏHİFƏ</a> | <a asp-controller="interview" asp-action="more">MÜSAHİBƏ</a></p>
+        </div>
+    </div>
+</section>
+<section class="sections">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12">
+                <p class="newsheader">@Model.GetInterview.Header</p>
+                <img src="~/img/@Model.GetInterview.Image" height="609" width="1170" alt="" class="img-fluid mb-3">
+                <div class="justify-content-between">
+                    <p class="d-inline datetimefornewsdetail">@Model.GetInterview.DateTime.ToShortDateString()</p>
+                    <ul class="newsshare">
+                        <li class="sharetext">paylaş: </li>
+                        <li><a href=""><i class="fas fa-envelope"></i></a></li>
+                        <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <p class="newsdetailbody">@Model.GetInterview.Body</p>
+            </div>
+        </div>
+    </div>
+    <div class="linenewsdetail"></div>
+</section>
+<section class="sections">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <p class="moreprojects">ƏLAQƏLİ MÜSAHİBƏLƏR</p>
+            </div>
+            @foreach (var item in Model.Interviews.Take(3))
+            {
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <a asp-controller="interview" asp-action="index" asp-route-id="@item.Id">
+                        <img src="~/img/@item.Image" alt="@item.Header" width="370" height="227" class="moreprojectsimg rounded">
+                    </a>
+                    <p class="moreprojectshead">
+                        <a asp-controller="interview" asp-action="index" asp-route-id="@item.Id"> @item.Header </a>
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
